@@ -1,0 +1,12 @@
+{
+    "name": "matthimatiker/package-marshaller",
+    "authors": [
+        {
+            "name": "Matthias Molitor",
+            "email": "matthias@matthimatiker.de"
+        }
+    ],
+    "require": {
+
+    }
+}
