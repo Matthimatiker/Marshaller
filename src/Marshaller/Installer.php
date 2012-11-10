@@ -14,6 +14,8 @@
 
 namespace Marshaller;
 
+use Composer\Installer\LibraryInstaller;
+
 /**
  * Installer that copies packages to a custom location.
  *
@@ -25,7 +27,8 @@ namespace Marshaller;
  * @link https://github.com/Matthimatiker/PackageMarshaller
  * @since 10.11.2012
  */
- class Installer
+ class Installer implements LibraryInstaller
  {
      
  }
+ 
