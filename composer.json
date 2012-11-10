@@ -1,5 +1,7 @@
 {
     "name": "matthimatiker/package-marshaller",
+    "description": "Installer that copies packages to a custom location.",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Matthias Molitor",
@@ -8,5 +10,8 @@
     ],
     "require": {
 
+    },
+    "require-dev": {
+    	"composer/composer": "*"
     }
 }
