@@ -15,7 +15,7 @@
 namespace Marshaller;
 
 /**
- *
+ * Installer that copies packages to a custom location.
  *
  * @category PHP
  * @package Marshaller
