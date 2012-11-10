@@ -12,6 +12,6 @@
 
     },
     "require-dev": {
-    	"composer/composer": "*"
+    	"composer/composer": "*@dev"
     }
 }
