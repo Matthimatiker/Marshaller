@@ -16,6 +16,11 @@
 namespace Marshaller;
 
 /**
+ * Initializes the test environment.
+ */
+require_once(dirname(__FILE__) . '/bootstrap.php');
+
+/**
  * Tests the installer.
  *
  * @category PHP
