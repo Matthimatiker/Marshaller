@@ -4,3 +4,4 @@
 /composer.phar
 /vendor/
 /composer.lock
+/tests/Marshaller/_files/vendor
