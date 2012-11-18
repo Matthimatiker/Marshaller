@@ -83,7 +83,7 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
      */
     public function testInstallerSupportsMarshallerAssets()
     {
-        
+        $this->assertTrue($this->installer->supports('marshaller-asset'));
     }
     
     /**
@@ -92,7 +92,7 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
      */
     public function testInstallerDoesNotSupportPackagesOfUnknownTypes()
     {
-        
+        $this->assertFalse($this->installer->supports('other-type'));
     }
     
     /**
