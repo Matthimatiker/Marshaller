@@ -88,6 +88,27 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if getInstallPath() returns the path that is configured
+     * by the installed package.
+     */
+    public function testGetInstallPathReturnsPathFromInstalledPackage()
+    {
+        $configuredPath = 'public/asset';
+        $package        = $this->createPackage('installer/test', array('install-path' => $configuredPath));
+        $this->assertEquals($configuredPath, $this->installer->getInstallPath($package));
+    }
+    
+    /**
+     * Ensures that getInstallPath() returns the default path in the vendor
+     * directory if no more specific path configuration is found.
+     */
+    public function testGetInstallReturnsDefaultPathIfNoInformationIsAvailable()
+    {
+        $package = $this->createPackage('installer/test');
+        $this->assertEquals($this->getVendorDir() . '/installer/test', $this->installer->getInstallPath($package));
+    }
+    
+    /**
      * Creates a composer instance for testing.
      *
      * @return \Composer\Composer
@@ -104,6 +125,16 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
         $composer = new \Composer\Composer();
         $composer->setConfig($config);
         return $composer;
+    }
+    
+    /**
+     * Returns the path to the configured vendor directory.
+     *
+     * @return string
+     */
+    protected function getVendorDir()
+    {
+        return $this->composer->getConfig()->get('vendor-dir');
     }
     
     /**
