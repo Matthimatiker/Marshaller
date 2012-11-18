@@ -28,7 +28,7 @@ use Composer\Package\PackageInterface;
  * @link https://github.com/Matthimatiker/PackageMarshaller
  * @since 10.11.2012
  */
- class Installer implements LibraryInstaller
+ class Installer extends LibraryInstaller
  {
      
      /**
