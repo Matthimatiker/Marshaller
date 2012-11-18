@@ -50,14 +50,21 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     protected $composer = null;
     
     /**
+     * IO instance that is injected into the installer.
+     *
+     * @var \Composer\IO\IOInterface
+     */
+    protected $io = null;
+    
+    /**
      * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
      */
     protected function setUp()
     {
         parent::setUp();
         $this->composer  = $this->createComposer();
-        $io = $this->getMock('Composer\IO\IOInterface');
-        $this->installer = new Installer($io, $this->composer);
+        $this->io        = $this->getMock('Composer\IO\IOInterface');
+        $this->installer = new Installer($this->io, $this->composer);
     }
     
     /**
@@ -66,6 +73,7 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $this->installer = null;
+        $this->io        = null;
         $this->composer  = null;
         parent::tearDown();
     }
@@ -78,6 +86,16 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     protected function createComposer()
     {
         return new \Composer\Composer();
+    }
+    
+    /**
+     * Creates an IO instance for testing.
+     *
+     * @return \Composer\IO\IOInterface
+     */
+    protected function createIO()
+    {
+        return $this->getMock('Composer\IO\IOInterface');
     }
     
 }
