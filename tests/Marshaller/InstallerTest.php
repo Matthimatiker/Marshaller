@@ -98,4 +98,22 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
         return $this->getMock('Composer\IO\IOInterface');
     }
     
+    /**
+     * Creates a package for testing.
+     *
+     * @param string $prettyName The package name.
+     * @return \Composer\Package\PackageInterface
+     */
+    protected function createPackage($prettyName, array $extra = array())
+    {
+        $package = $this->getMock('Composer\Package\PackageInterface');
+        $package->expects($this->any())
+                ->method('getPrettyName')
+                ->will($this->returnValue($prettyName));
+        $package->expects($this->any())
+                ->method('getExtra')
+                ->will($this->returnValue($extra));
+        return $package;
+    }
+    
 }
