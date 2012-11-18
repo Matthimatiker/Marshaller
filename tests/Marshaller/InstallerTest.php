@@ -35,4 +35,49 @@ require_once(dirname(__FILE__) . '/bootstrap.php');
 class InstallerTest extends \PHPUnit_Framework_TestCase
 {
     
+    /**
+     * System under test.
+     *
+     * @var \Composer\Installer\InstallerInterface
+     */
+    protected $installer = null;
+    
+    /**
+     * The composer instance that is injected into the installer.
+     *
+     * @var \Composer\Composer
+     */
+    protected $composer = null;
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::setUp()} for details.
+     */
+    protected function setUp()
+    {
+        parent::setUp();
+        $this->composer  = $this->createComposer();
+        $io = $this->getMock('Composer\IO\IOInterface');
+        $this->installer = new Installer($io, $this->composer);
+    }
+    
+    /**
+     * See {@link PHPUnit_Framework_TestCase::tearDown()} for details.
+     */
+    protected function tearDown()
+    {
+        $this->installer = null;
+        $this->composer  = null;
+        parent::tearDown();
+    }
+    
+    /**
+     * Creates a composer instance for testing.
+     *
+     * @return \Composer\Composer
+     */
+    protected function createComposer()
+    {
+        return new \Composer\Composer();
+    }
+    
 }
