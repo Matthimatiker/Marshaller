@@ -104,8 +104,9 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetInstallReturnsDefaultPathIfNoInformationIsAvailable()
     {
-        $package = $this->createPackage('installer/test');
-        $this->assertEquals($this->getVendorDir() . '/installer/test', $this->installer->getInstallPath($package));
+        $package  = $this->createPackage('installer/test');
+        $expected = $this->normalizePath($this->getVendorDir() . '/installer/test');
+        $this->assertEquals($expected, $this->normalizePath($this->installer->getInstallPath($package)));
     }
     
     /**
@@ -163,6 +164,20 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
                 ->method('getExtra')
                 ->will($this->returnValue($extra));
         return $package;
+    }
+    
+    /**
+     * Normalizes the separators in the given path to "/".
+     *
+     * This ensures, that different paths are compareable, regardless
+     * of the operating system.
+     *
+     * @param string $path
+     * @return string The normalized path.
+     */
+    protected function normalizePath($path)
+    {
+        return str_replace(array('/', '\\'), '/', $path);
     }
     
 }
