@@ -79,6 +79,15 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Checks if getInstallPath() returns at least a string.
+     */
+    public function testGetInstallPathReturnsString()
+    {
+        $path = $this->installer->getInstallPath($this->createPackage('installer/test'));
+        $this->assertInternalType('string', $path);
+    }
+    
+    /**
      * Creates a composer instance for testing.
      *
      * @return \Composer\Composer
