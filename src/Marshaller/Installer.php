@@ -15,6 +15,7 @@
 namespace Marshaller;
 
 use Composer\Installer\LibraryInstaller;
+use Composer\Package\PackageInterface;
 
 /**
  * Installer that copies packages to a custom location.
@@ -29,6 +30,17 @@ use Composer\Installer\LibraryInstaller;
  */
  class Installer implements LibraryInstaller
  {
+     
+     /**
+      * See {@link Composer\Installer\InstallerInterface::getInstallPath()} for details.
+      *
+      * @param PackageInterface $package The package that will be installed.
+      * @return string The installation path.
+      */
+     public function getInstallPath(PackageInterface $package)
+     {
+         
+     }
      
  }
  
