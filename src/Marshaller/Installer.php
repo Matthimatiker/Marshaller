@@ -32,6 +32,17 @@ use Composer\Package\PackageInterface;
  {
      
      /**
+      * See {@link Composer\Installer\InstallerInterface::supports()} for details.
+      *
+      * @param string $packageType The type of the package that shall be installed.
+      * @return boolean True if the installer is responsible for that package type, false otherwise.
+      */
+     public function supports($packageType)
+     {
+          return $packageType === 'marshaller-asset';
+     }
+     
+     /**
       * See {@link Composer\Installer\InstallerInterface::getInstallPath()} for details.
       *
       * @param PackageInterface $package The package that will be installed.
