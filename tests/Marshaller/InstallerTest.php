@@ -94,7 +94,16 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
      */
     protected function createComposer()
     {
-        return new \Composer\Composer();
+        $config = new \Composer\Config();
+        $config->merge(array(
+            'config' => array(
+                'vendor-dir' => dirname(__FILE__) . '/_files/vendor',
+                'bin-dir'    => dirname(__FILE__) . '/_files/bin',
+            )
+        ));
+        $composer = new \Composer\Composer();
+        $composer->setConfig($config);
+        return $composer;
     }
     
     /**
