@@ -79,6 +79,23 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the installer supports packages of type "marshaller-asset".
+     */
+    public function testInstallerSupportsMarshallerAssets()
+    {
+        
+    }
+    
+    /**
+     * Ensures that the installer does not support packages of types
+     * that it should not be responsible for.
+     */
+    public function testInstallerDoesNotSupportPackagesOfUnknownTypes()
+    {
+        
+    }
+    
+    /**
      * Checks if getInstallPath() returns at least a string.
      */
     public function testGetInstallPathReturnsString()
