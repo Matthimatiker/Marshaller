@@ -32,6 +32,14 @@ use Composer\Package\PackageInterface;
  {
      
      /**
+      * Redeclared variable from library installer to provide
+      * a better type hint.
+      *
+      * @var \Composer\Composer
+      */
+     protected $composer = null;
+     
+     /**
       * See {@link Composer\Installer\InstallerInterface::supports()} for details.
       *
       * @param string $packageType The type of the package that shall be installed.
