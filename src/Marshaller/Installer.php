@@ -58,14 +58,17 @@ use Composer\Package\PackageInterface;
       */
      public function getInstallPath(PackageInterface $package)
      {
+         // Try to read installation path from root package configuration.
          $rootPackageConfig = $this->composer->getPackage()->getExtra();
          if (isset($rootPackageConfig['installer-paths'][$package->getPrettyName()])) {
              return $rootPackageConfig['installer-paths'][$package->getPrettyName()];
          }
+         // Try to read installation path from package configuration.
          $packageConfig = $package->getExtra();
          if (isset($packageConfig['install-path'])) {
              return $packageConfig['install-path'];
          }
+         // No path configured, use default behavior as fallback.
          return parent::getInstallPath($package);
      }
      
