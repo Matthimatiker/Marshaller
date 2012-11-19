@@ -50,9 +50,9 @@ use Composer\Package\PackageInterface;
       */
      public function getInstallPath(PackageInterface $package)
      {
-         $config = $package->getExtra();
-         if (isset($config['install-path'])) {
-             return $config['install-path'];
+         $packageConfig = $package->getExtra();
+         if (isset($packageConfig['install-path'])) {
+             return $packageConfig['install-path'];
          }
          return parent::getInstallPath($package);
      }
