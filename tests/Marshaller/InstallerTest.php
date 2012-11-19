@@ -119,11 +119,20 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
      * Ensures that getInstallPath() returns the default path in the vendor
      * directory if no more specific path configuration is found.
      */
-    public function testGetInstallReturnsDefaultPathIfNoInformationIsAvailable()
+    public function testGetInstallPathReturnsDefaultPathIfNoInformationIsAvailable()
     {
         $package  = $this->createPackage('installer/test');
         $expected = $this->normalizePath($this->getVendorDir() . '/installer/test');
         $this->assertEquals($expected, $this->normalizePath($this->installer->getInstallPath($package)));
+    }
+    
+    /**
+     * Ensures that the installer uses the package path that is configured in the
+     * root package, if available.
+     */
+    public function testGetInstallPathReturnsConfiguredPathFromRootPackageIfAvailable()
+    {
+        
     }
     
     /**
