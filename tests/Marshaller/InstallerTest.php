@@ -145,6 +145,24 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the installer does not use paths for other packages, which are configured
+     * in the root package.
+     */
+    public function testGetInstallPathDoesNotReturnPathFromUnrelatedPackageThatIsConfiguredInRootPackage()
+    {
+        $options = array(
+            'installer-paths' => array(
+                'unrelated/package' => 'another/path'
+            )
+        );
+        $rootPackage = $this->createRootPackage($options);
+        $this->composer->setPackage($rootPackage);
+        
+        $package = $this->createPackage('installer/test', array('install-path' => 'public/asset'));
+        $this->assertNotEquals('another/path', $this->installer->getInstallPath($package));
+    }
+    
+    /**
      * Creates a composer instance for testing.
      *
      * @return \Composer\Composer
