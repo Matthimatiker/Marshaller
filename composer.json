@@ -1,5 +1,5 @@
 {
-    "name": "matthimatiker/package-marshaller",
+    "name": "matthimatiker/marshaller",
     "description": "Installer that copies packages to a custom location.",
     "license": "BSD-3-Clause",
     "type": "composer-installer",
