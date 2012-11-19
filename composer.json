@@ -1,6 +1,6 @@
 {
     "name": "matthimatiker/marshaller",
-    "description": "Installer that copies packages to a custom location.",
+    "description": "Marshaller is a composer installer that copies packages to a configurable location.",
     "keywords": ["composer", "installer", "configurable"],
     "license": "BSD-3-Clause",
     "type": "composer-installer",
