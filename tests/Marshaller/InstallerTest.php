@@ -132,7 +132,16 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetInstallPathReturnsConfiguredPathFromRootPackageIfAvailable()
     {
+        $options = array(
+            'installer-paths' => array(
+                'installer/test' => 'another/path'
+            )
+        );
+        $rootPackage = $this->createRootPackage($options);
+        $this->composer->setPackage($rootPackage);
         
+        $package = $this->createPackage('installer/test', array('install-path' => 'public/asset'));
+        $this->assertEquals('another/path', $this->installer->getInstallPath($package));
     }
     
     /**
