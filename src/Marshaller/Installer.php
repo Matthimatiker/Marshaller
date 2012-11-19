@@ -59,7 +59,7 @@ use Composer\Package\PackageInterface;
      public function getInstallPath(PackageInterface $package)
      {
          $rootPackageConfig = $this->composer->getPackage()->getExtra();
-         if (isset($rootPackageConfig['installer-paths']) && isset($rootPackageConfig['installer-paths'][$package->getPrettyName()])) {
+         if (isset($rootPackageConfig['installer-paths'][$package->getPrettyName()])) {
              return $rootPackageConfig['installer-paths'][$package->getPrettyName()];
          }
          $packageConfig = $package->getExtra();
