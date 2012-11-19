@@ -178,6 +178,7 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
      * Creates a package for testing.
      *
      * @param string $prettyName The package name.
+     * @param array(mixed) $extra Additional configuration.
      * @return \Composer\Package\PackageInterface
      */
     protected function createPackage($prettyName, array $extra = array())
