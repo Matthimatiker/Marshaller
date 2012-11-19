@@ -151,6 +151,7 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
         ));
         $composer = new \Composer\Composer();
         $composer->setConfig($config);
+        $composer->setPackage($this->createRootPackage());
         return $composer;
     }
     
@@ -175,15 +176,27 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Creates a root package with the name root/package.
+     *
+     * @param array(mixed) $extra Additional information.
+     * @return \Composer\Package\RootPackageInterface
+     */
+    protected function createRootPackage($extra = array())
+    {
+        return $this->createPackage('root/package', $extra, 'Composer\Package\RootPackageInterface');
+    }
+    
+    /**
      * Creates a package for testing.
      *
      * @param string $prettyName The package name.
      * @param array(mixed) $extra Additional configuration.
+     * @param string $type The mocked type. Should implement the PackageInterface.
      * @return \Composer\Package\PackageInterface
      */
-    protected function createPackage($prettyName, array $extra = array())
+    protected function createPackage($prettyName, array $extra = array(), $type = 'Composer\Package\PackageInterface')
     {
-        $package = $this->getMock('Composer\Package\PackageInterface');
+        $package = $this->getMock($type);
         $package->expects($this->any())
                 ->method('getPrettyName')
                 ->will($this->returnValue($prettyName));
