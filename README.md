@@ -67,6 +67,6 @@ path, then the configuration in the root package will be used.
 ## Fallback behavior ##
 
 If a package uses the Marshaller installer, but neither itself nor 
-the root package define an installation path, then the default behavior
+the root package defines an installation path, then the default behavior
 of Composer will take place and the package will be copied to the *vendor*
 directory.
