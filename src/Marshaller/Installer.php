@@ -60,14 +60,26 @@ use Composer\Package\PackageInterface;
      {
          // Try to read installation path from root package configuration.
          $rootPackageConfig = $this->composer->getPackage()->getExtra();
+          if (isset($rootPackageConfig['installation-paths'][$package->getPrettyName()])) {
+             return $rootPackageConfig['installation-paths'][$package->getPrettyName()];
+         }
+         // The attribute "installer-paths" is check to guarantee backwards compatibility
+         // with version 0.1.1.
          if (isset($rootPackageConfig['installer-paths'][$package->getPrettyName()])) {
              return $rootPackageConfig['installer-paths'][$package->getPrettyName()];
          }
+         
          // Try to read installation path from package configuration.
          $packageConfig = $package->getExtra();
+         if (isset($packageConfig['installation-path'])) {
+             return $packageConfig['installation-path'];
+         }
+         // The attribute "install-path" is check to guarantee backwards compatibility
+         // with version 0.1.1.
          if (isset($packageConfig['install-path'])) {
              return $packageConfig['install-path'];
          }
+         
          // No path configured, use default behavior as fallback.
          return parent::getInstallPath($package);
      }
