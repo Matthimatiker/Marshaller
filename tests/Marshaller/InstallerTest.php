@@ -116,6 +116,19 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
     }
     
     /**
+     * Ensures that the installer reads the installation path from the "installation-path"
+     * attribute of the installed package as described in the documentation.
+     *
+     * @see https://github.com/Matthimatiker/Marshaller/issues/1
+     */
+    public function testGetInstallPathReturnsPathFromInstallationPathOfInstalledPackage()
+    {
+        $configuredPath = 'public/asset';
+        $package        = $this->createPackage('installer/test', array('installation-path' => $configuredPath));
+        $this->assertEquals($configuredPath, $this->installer->getInstallPath($package));
+    }
+    
+    /**
      * Ensures that getInstallPath() returns the default path in the vendor
      * directory if no more specific path configuration is found.
      */
@@ -141,6 +154,26 @@ class InstallerTest extends \PHPUnit_Framework_TestCase
         $this->composer->setPackage($rootPackage);
         
         $package = $this->createPackage('installer/test', array('install-path' => 'public/asset'));
+        $this->assertEquals('another/path', $this->installer->getInstallPath($package));
+    }
+    
+    /**
+     * Ensures that the installer reads the installation path from the "installation-paths"
+     * attribute of the root package as described in the documentation.
+     *
+     * @see https://github.com/Matthimatiker/Marshaller/issues/1
+     */
+    public function testGetInstallPathReturnsPathFromInstallationPathsOfRootPackageIfAvailable()
+    {
+        $options = array(
+            'installation-paths' => array(
+                'installer/test' => 'another/path'
+            )
+        );
+        $rootPackage = $this->createRootPackage($options);
+        $this->composer->setPackage($rootPackage);
+        
+        $package = $this->createPackage('installer/test', array('installation-path' => 'public/asset'));
         $this->assertEquals('another/path', $this->installer->getInstallPath($package));
     }
     
