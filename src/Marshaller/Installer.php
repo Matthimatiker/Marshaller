@@ -58,7 +58,29 @@ use Composer\Package\PackageInterface;
       */
      public function getInstallPath(PackageInterface $package)
      {
-         // Try to read installation path from root package configuration.
+         $path = $this->getInstallPathFromRoot($package);
+         if ($path !== null) {
+             return $path;
+         }
+         $path = $this->getInstallpathFromPackage($package);
+         if ($path !== null) {
+             return $path;
+         }
+         // No path configured, use default behavior as fallback.
+         return parent::getInstallPath($package);
+     }
+     
+     /**
+      * Returns the installation path which is defined in the root package.
+      *
+      * Returns null if the root package does not define a path for the
+      * provided package.
+      *
+      * @param PackageInterface $package
+      * @return string|null
+      */
+     protected function getInstallPathFromRoot(PackageInterface $package)
+     {
          $rootPackageConfig = $this->composer->getPackage()->getExtra();
           if (isset($rootPackageConfig['installation-paths'][$package->getPrettyName()])) {
              return $rootPackageConfig['installation-paths'][$package->getPrettyName()];
@@ -68,8 +90,19 @@ use Composer\Package\PackageInterface;
          if (isset($rootPackageConfig['installer-paths'][$package->getPrettyName()])) {
              return $rootPackageConfig['installer-paths'][$package->getPrettyName()];
          }
-         
-         // Try to read installation path from package configuration.
+         // No path defined in the root package.
+         return null;
+     }
+     
+     /**
+      * Returns the installation path which is defined in the package itself.
+      *
+      * Returns null if the package does not define any path.
+      *
+      * @param PackageInterface $package
+      */
+     protected function getInstallpathFromPackage(PackageInterface $package)
+     {
          $packageConfig = $package->getExtra();
          if (isset($packageConfig['installation-path'])) {
              return $packageConfig['installation-path'];
@@ -79,9 +112,8 @@ use Composer\Package\PackageInterface;
          if (isset($packageConfig['install-path'])) {
              return $packageConfig['install-path'];
          }
-         
-         // No path configured, use default behavior as fallback.
-         return parent::getInstallPath($package);
+         // No path defined in the package.
+         return null;
      }
      
  }
