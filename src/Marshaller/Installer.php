@@ -85,7 +85,7 @@ use Composer\Package\PackageInterface;
           if (isset($rootPackageConfig['installation-paths'][$package->getPrettyName()])) {
              return $rootPackageConfig['installation-paths'][$package->getPrettyName()];
          }
-         // The attribute "installer-paths" is check to guarantee backwards compatibility
+         // The attribute "installer-paths" is checked to guarantee backwards compatibility
          // with version 0.1.1.
          if (isset($rootPackageConfig['installer-paths'][$package->getPrettyName()])) {
              return $rootPackageConfig['installer-paths'][$package->getPrettyName()];
@@ -107,7 +107,7 @@ use Composer\Package\PackageInterface;
          if (isset($packageConfig['installation-path'])) {
              return $packageConfig['installation-path'];
          }
-         // The attribute "install-path" is check to guarantee backwards compatibility
+         // The attribute "install-path" is checked to guarantee backwards compatibility
          // with version 0.1.1.
          if (isset($packageConfig['install-path'])) {
              return $packageConfig['install-path'];
