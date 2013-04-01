@@ -82,7 +82,7 @@ use Composer\Package\PackageInterface;
      protected function getInstallPathFromRoot(PackageInterface $package)
      {
          $rootPackageConfig = $this->composer->getPackage()->getExtra();
-          if (isset($rootPackageConfig['installation-paths'][$package->getPrettyName()])) {
+         if (isset($rootPackageConfig['installation-paths'][$package->getPrettyName()])) {
              return $rootPackageConfig['installation-paths'][$package->getPrettyName()];
          }
          // The attribute "installer-paths" is checked to guarantee backwards compatibility
